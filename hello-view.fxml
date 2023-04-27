@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TilePane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefRows="2" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.monopoly.HelloController">
+   <children>
+      <Button fx:id="duck1" mnemonicParsing="false" prefHeight="160.0" prefWidth="160.0" text="Duck's money: 1500$" />
+      <Button fx:id="buyNewLandbtn" mnemonicParsing="false" onAction="#nitro" prefHeight="50.0" prefWidth="100.0" text="Buy New Land" />
+      <Button fx:id="rentbtn" mnemonicParsing="false" onAction="#rentie" prefHeight="50.0" prefWidth="100.0" text="Rent " />
+      <Button fx:id="improvbtn" mnemonicParsing="false" onAction="#taxes" prefHeight="50.0" prefWidth="100.0" text="Taxes" />
+      <Button fx:id="dog1" mnemonicParsing="false" prefHeight="160.0" prefWidth="160.0" text="Dog's money: 1500$" />
+      <Button fx:id="penguin1" mnemonicParsing="false" prefHeight="160.0" prefWidth="160.0" text="Penguin's money: 1500$" />
+      <Button fx:id="roundbtn" mnemonicParsing="false" onAction="#round" prefHeight="50.0" prefWidth="100.0" text="Round money" />
+      <Button fx:id="jailbtn" mnemonicParsing="false" onAction="#jail" prefHeight="50.0" prefWidth="100.0" text="Jail" />
+      <Button fx:id="chancebtn" mnemonicParsing="false" onAction="#plusMinus" prefHeight="50.0" prefWidth="100.0" text="-/+" />
+      <Button fx:id="cat1" mnemonicParsing="false" prefHeight="160.0" prefWidth="160.0" text="Cat's money: 1500$" />
+   </children>
+</TilePane>

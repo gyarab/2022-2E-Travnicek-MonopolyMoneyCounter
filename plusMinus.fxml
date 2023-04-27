@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.monopoly.PlusMinusController">
+   <children>
+      <Button fx:id="okaybtn" layoutX="274.0" layoutY="175.0" mnemonicParsing="false" onAction="#kdyzKlykne" text="Okay!" />
+      <ChoiceBox fx:id="figures" layoutX="123.0" layoutY="107.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="cards" layoutX="320.0" layoutY="107.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>
