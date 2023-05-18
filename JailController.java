@@ -1,24 +1,30 @@
 package com.example.monopoly;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class JailController extends HelloController implements Initializable {
     @FXML
-    Button duck1;
+    Label duck1;
     @FXML
-    Button dog1;
+    Label dog1;
     @FXML
-    Button cat1;
+    Label cat1;
     @FXML
-    Button penguin1;
+    Label penguin1;
     @FXML
     Button okaybtn;
     @FXML
@@ -29,38 +35,38 @@ public class JailController extends HelloController implements Initializable {
     @Override
     public void initialize(URL pat, ResourceBundle mat) {
         pcbk.getItems().addAll(kremova);
+        pcbk.setValue("Pick A Player");
         pcbk.setOnAction(this::breakOut);
     }
     public void breakOut(ActionEvent event) {
         String cukr = pcbk.getValue();
-        if(cukr == "Duck") {
+        if(cukr.equals("Duck")) {
             duck-=50;
         }
-        if(cukr == "Dog") {
+        if(cukr.equals("Dog")) {
             dog -=50;
         }
-        if(cukr == "Cat") {
+        if(cukr.equals("Cat") ) {
             cat-= 50;
         }
-        if(cukr == "Penguin") {
+        if(cukr.equals("Penguin") ) {
             penguin -=50;
         } else{
             return;
         }
     }
     @FXML
-    protected void onTap() {
+    protected void onTap() throws IOException {
         okaybtn.setOnAction(this::breakOut);
-        if(duck1 != null) {
-            duck1.setText("Duck's money: " + duck + "$");
-        } else if(dog1 != null) {
-            dog1.setText("Dog's money: " + dog + "$");
-        }else if(cat1 != null) {
-            cat1.setText("Cat's money: " + cat + "$");
-        } else if(penguin1 != null) {
-            penguin1.setText("Penguin's money: " + penguin + "$");
-        }
         Stage prison = (Stage) okaybtn.getScene().getWindow();
         prison.close();
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+        stage.setTitle("Monopoly");
+        stage.setScene(scene);
+        stage.show();
     }
+
+
 }

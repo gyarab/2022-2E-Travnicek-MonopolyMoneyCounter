@@ -2,11 +2,14 @@ package com.example.monopoly;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,12 +31,14 @@ public class TaxesController extends HelloController implements Initializable {
     @FXML
     private final String[] players = {"Duck", "Dog", "Cat", "Penguin"};
     @FXML
-    private final String[] value = {"900$", "10% of your worth"};
+    private final String[] value = {"-900$", "-(10% of your worth)"};
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         swag.getItems().addAll(players);
+        swag.setValue("Pick A Player");
         quak.getItems().addAll(value);
+        quak.setValue("Pick An Option");
         swag.setOnAction(this::getPlayers);
         quak.setOnAction(this::getPlayers);
     }
@@ -42,48 +47,45 @@ public class TaxesController extends HelloController implements Initializable {
         String swag1 = swag.getValue();
         String quak1 = quak.getValue();
 
-            if (swag1 == "Duck") {
-                if (quak1 == "900$") {
+            if (swag1.equals("Duck")) {
+                if (quak1.equals("-900$")) {
                     duck -= 900;
-                } else if (quak1 == "10% of your worth") {
+                } else if (quak1.equals("-(10% of your worth)")) {
                     duck -= (duck/ 10);
                 }
             }
-            if (swag1 == "Dog") {
-                if (quak1 == "900$") {
+            if (swag1.equals("Dog")) {
+                if (quak1.equals("-900$")) {
                     dog -= 900;
-                } else if (quak1 == "10% of your worth") {
+                } else if (quak1.equals("-(10% of your worth)")) {
                     dog -= (dog / 10);
                 }
             }
-            if (swag1 == "Cat") {
-                if (quak1 == "900$") {
+            if (swag1.equals("Cat")) {
+                if (quak1.equals("-900$")) {
                     cat -= 900;
-                } else if (quak1 == "10% of your worth") {
+                } else if (quak1.equals("-(10% of your worth)")) {
                     cat -= (cat / 10);
                 }
             }
-        if (swag1 == "Penguin") {
-            if (quak1 == "900$") {
+        if (swag1.equals("Penguin")) {
+            if (quak1.equals("-900$")) {
                 penguin -= 900;
-            } else if (quak1 == "10% of your worth") {
+            } else if (quak1.equals("-(10% of your worth)")) {
                 penguin -= (penguin / 10);
             }
         }
     }
     @FXML
-    protected void isClick(){
+    protected void isClick() throws IOException {
         okaybtn.setOnAction(this::getPlayers);
-        if(duck1 != null) {
-            duck1.setText("Duck's money: " + duck + "$");
-        } else if(dog1 != null) {
-            dog1.setText("Dog's money: " + dog + "$");
-        }else if(cat1 != null) {
-            cat1.setText("Cat's money: " + cat + "$");
-        } else if(penguin1 != null) {
-            penguin1.setText("Penguin's money: " + penguin + "$");
-        }
         Stage stage = (Stage) okaybtn.getScene().getWindow();
         stage.close();
+        Stage stage1 = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+        stage1.setTitle("Monopoly");
+        stage1.setScene(scene);
+        stage1.show();
     }
 }

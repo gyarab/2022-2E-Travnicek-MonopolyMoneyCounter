@@ -2,11 +2,14 @@ package com.example.monopoly;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,98 +32,97 @@ public class PlusMinusController extends HelloController implements Initializabl
     @FXML
     ChoiceBox <String> cards;
     @FXML
-    private final String[] cards1 = {"Advance to Go/Illinois Avenue/St. Charles Place", "Speeding fine",
-            "Chairman of the Board","Your building loan matures", "Take a trip to Reading Railroad, if it is over Go"};
+    private final String[] cards1 = {"Advance to Go/Illinois Avenue/St. Charles Place (+200$)", "Speeding fine (-15$)",
+            "Chairman of the Board (-150$)","Your building loan matures (+150$)", "Take a trip to Reading Railroad, if it is over Go (+200$)"};
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         figures.getItems().addAll(figures1);
+        figures.setValue("Pick A Player");
         cards.getItems().addAll(cards1);
-        //figures.setOnAction(this::getPlayers);
-        //cards.setOnAction(this::getPlayers);
+        cards.setValue("Pick A Card");
+        figures.setOnAction(this::getPlayers);
+        cards.setOnAction(this::getPlayers);
     }
     public void getPlayers(ActionEvent e) {
         String kolecko = figures.getValue();
         String cards2 = cards.getValue();
 
-        if(kolecko == "Duck") {
-            if(cards2 == "Advance to Go/Illinois Avenue/St. Charles Place") {
+        if(kolecko.equals("Duck")) {
+            if(cards2.equals("Advance to Go/Illinois Avenue/St. Charles Place (+200$)")) {
                 duck+=200;
-            } else if(cards2 == "Speeding fine"){
+            } else if(cards2.equals("Speeding fine (-15$)")){
                 duck-=15;
-            } else if(cards2 == "Chairman of the Board") {
+            } else if(cards2.equals("Chairman of the Board (-150$)")) {
                 duck-=150;
                 dog+=50;
                 cat+=50;
                 penguin+=50;
-            } else if(cards2 == "Your building loan matures") {
+            } else if(cards2.equals("Your building loan matures (+150$)")) {
                 duck+=150;
-            } else if(cards2 == "Take a trip to Reading Railroad, if it is over Go") {
+            } else if(cards2.equals("Take a trip to Reading Railroad, if it is over Go (+200$)")) {
                 duck+=200;
             }
         }
-        if(kolecko == "Cat") {
-            if(cards2 == "Advance to Go/Illinois Avenue/St. Charles Place") {
+        if(kolecko.equals("Cat")) {
+            if(cards2.equals("Advance to Go/Illinois Avenue/St. Charles Place (+200$)")) {
                 cat+=200;
-            } else if(cards2 == "Speeding fine"){
+            } else if(cards2.equals("Speeding fine (-15$)")){
                 cat-=15;
-            } else if(cards2 == "Chairman of the Board") {
+            } else if(cards2.equals("Chairman of the Board (-150$)")) {
                 cat-=150;
                 dog+=50;
                 duck+=50;
                 penguin+=50;
-            } else if(cards2 == "Your building loan matures") {
+            } else if(cards2.equals("Your building loan matures (+150$)")) {
                 cat+=150;
-            } else if(cards2 == "Take a trip to Reading Railroad, if it is over Go") {
+            } else if(cards2.equals("Take a trip to Reading Railroad, if it is over Go (+200$)")) {
                 cat+=200;
             }
         }
-        if(kolecko == "Dog") {
-            if(cards2 == "Advance to Go/Illinois Avenue/St. Charles Place") {
+        if(kolecko.equals("Dog")) {
+            if(cards2.equals("Advance to Go/Illinois Avenue/St. Charles Place (+200$)")) {
                 dog+=200;
-            } else if(cards2 == "Speeding fine"){
+            } else if(cards2.equals("Speeding fine (-15$)")){
                 dog-=15;
-            } else if(cards2 == "Chairman of the Board") {
+            } else if(cards2.equals("Chairman of the Board (-150$)")) {
                 dog-=150;
                 cat+=50;
                 duck+=50;
                 penguin+=50;
-            } else if(cards2 == "Your building loan matures") {
+            } else if(cards2.equals("Your building loan matures (+150$)")) {
                 dog+=150;
-            } else if(cards2 == "Take a trip to Reading Railroad, if it is over Go") {
+            } else if(cards2.equals("Take a trip to Reading Railroad, if it is over Go (+200$)")) {
                 dog+=200;
             }
         }
-        if(kolecko == "Penguin") {
-            if(cards2 == "Advance to Go/Illinois Avenue/St. Charles Place") {
+        if(kolecko.equals("Penguin")) {
+            if(cards2.equals("Advance to Go/Illinois Avenue/St. Charles Place (+200$)")) {
                 penguin+=200;
-            } else if(cards2 == "Speeding fine"){
+            } else if(cards2.equals("Speeding fine (-15$)")){
                 penguin-=15;
-            } else if(cards2 == "Chairman of the Board") {
+            } else if(cards2.equals("Chairman of the Board (-150$)")) {
                 penguin-=150;
                 cat+=50;
                 duck+=50;
                 dog+=50;
-            } else if(cards2 == "Your building loan matures") {
+            } else if(cards2.equals("Your building loan matures (+150$)")) {
                 penguin+=150;
-            } else if(cards2 == "Take a trip to Reading Railroad, if it is over Go") {
+            } else if(cards2.equals("Take a trip to Reading Railroad, if it is over Go (+200$)")) {
                 penguin+=200;
             }
         }
     }
     @FXML
-    protected void kdyzKlykne() {
+    protected void kdyzKlykne() throws IOException {
         okaybtn.setOnAction(this::getPlayers);
-        if(duck1 != null) {
-            duck1.setText("Duck's money: " + duck + "$");
-        } else if(dog1 != null) {
-            dog1.setText("Dog's money: " + dog + "$");
-        }else if(cat1 != null) {
-            cat1.setText("Cat's money: " + cat + "$");
-        } else if(penguin1 != null) {
-            penguin1.setText("Penguin's money: " + penguin + "$");
-        }
         Stage steidz = (Stage) okaybtn.getScene().getWindow();
         steidz.close();
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+        stage.setTitle("Monopoly");
+        stage.setScene(scene);
+        stage.show();
     }
 }

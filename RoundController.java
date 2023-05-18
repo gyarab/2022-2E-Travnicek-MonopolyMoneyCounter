@@ -2,11 +2,14 @@ package com.example.monopoly;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,20 +32,21 @@ public class RoundController extends HelloController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
             bolek.getItems().addAll(lolek);
+            bolek.setValue("Pick A Player");
             bolek.setOnAction(this::getPlayers);
     }
     public void getPlayers(ActionEvent event) {
         String bolek2 = bolek.getValue();
-        if(bolek2 == "Duck") {
+        if(bolek2.equals("Duck")) {
             duck += 200;
         }
-        if(bolek2 == "Dog") {
+        if(bolek2.equals("Dog")) {
             dog += 200;
         }
-        if(bolek2 == "Cat") {
+        if(bolek2.equals("Cat")) {
             cat += 200;
         }
-        if(bolek2 == "Penguin") {
+        if(bolek2.equals("Penguin")) {
             penguin += 200;
         }
         else {
@@ -50,18 +54,15 @@ public class RoundController extends HelloController implements Initializable {
         }
     }
     @FXML
-    protected void onClicked() {
+    protected void onClicked() throws IOException {
         okaybtn.setOnAction(this::getPlayers);
-        if(duck1 != null) {
-            duck1.setText("Duck's money: " + duck + "$");
-        } else if(dog1 != null) {
-            dog1.setText("Dog's money: " + dog + "$");
-        }else if(cat1 != null) {
-            cat1.setText("Cat's money: " + cat + "$");
-        } else if(penguin1 != null) {
-            penguin1.setText("Penguin's money: " + penguin + "$");
-        }
         Stage stage = (Stage) okaybtn.getScene().getWindow();
         stage.close();
+        Stage stage1 = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+        stage1.setTitle("Monopoly");
+        stage1.setScene(scene);
+        stage1.show();
     }
 }
