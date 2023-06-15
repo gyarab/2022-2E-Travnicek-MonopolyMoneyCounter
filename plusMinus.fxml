@@ -8,5 +8,6 @@
       <Button fx:id="okaybtn" layoutX="274.0" layoutY="175.0" mnemonicParsing="false" onAction="#kdyzKlykne" text="Okay!" />
       <ChoiceBox fx:id="figures" layoutX="123.0" layoutY="107.0" prefWidth="150.0" />
       <ChoiceBox fx:id="cards" layoutX="320.0" layoutY="107.0" prefWidth="150.0" />
+      <Label fx:id="bothCB" layoutX="367.0" layoutY="179.0" text="Select an option in both ChoiceBoxes!" textFill="#fc0606" visible="false" />
    </children>
 </AnchorPane>

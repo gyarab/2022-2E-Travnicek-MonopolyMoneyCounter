@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,11 +24,14 @@ public class RoundController extends HelloController implements Initializable {
     @FXML
     Button penguin1;
     @FXML
+    Label bothCB;
+    @FXML
     private Button okaybtn;
     @FXML
     ChoiceBox<String> bolek;
     @FXML
     private final String[] lolek = {"Duck", "Dog", "Cat", "Penguin"};
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -55,14 +59,19 @@ public class RoundController extends HelloController implements Initializable {
     }
     @FXML
     protected void onClicked() throws IOException {
-        okaybtn.setOnAction(this::getPlayers);
-        Stage stage = (Stage) okaybtn.getScene().getWindow();
-        stage.close();
-        Stage stage1 = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
-        stage1.setTitle("Monopoly");
-        stage1.setScene(scene);
-        stage1.show();
+        if (bolek.getSelectionModel().isEmpty()) {
+            bothCB.setVisible(true);
+        }
+        if (!bolek.getSelectionModel().isEmpty()) {
+            okaybtn.setOnAction(this::getPlayers);
+            Stage stage = (Stage) okaybtn.getScene().getWindow();
+            stage.close();
+            Stage stage1 = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+            stage1.setTitle("Monopoly");
+            stage1.setScene(scene);
+            stage1.show();
+        }
     }
 }

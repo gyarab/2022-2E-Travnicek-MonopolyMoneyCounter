@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,6 +27,8 @@ public class PlusMinusController extends HelloController implements Initializabl
     @FXML
     private Button okaybtn;
     @FXML
+    Label bothCB;
+    @FXML
     ChoiceBox<String> figures;
     @FXML
     private final String[] figures1 = {"Duck", "Dog", "Cat", "Penguin"};
@@ -34,6 +37,7 @@ public class PlusMinusController extends HelloController implements Initializabl
     @FXML
     private final String[] cards1 = {"Advance to Go/Illinois Avenue/St. Charles Place (+200$)", "Speeding fine (-15$)",
             "Chairman of the Board (-150$)","Your building loan matures (+150$)", "Take a trip to Reading Railroad, if it is over Go (+200$)"};
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -115,14 +119,19 @@ public class PlusMinusController extends HelloController implements Initializabl
     }
     @FXML
     protected void kdyzKlykne() throws IOException {
-        okaybtn.setOnAction(this::getPlayers);
-        Stage steidz = (Stage) okaybtn.getScene().getWindow();
-        steidz.close();
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
-        stage.setTitle("Monopoly");
-        stage.setScene(scene);
-        stage.show();
+        if (figures.getSelectionModel().isEmpty() || cards.getSelectionModel().isEmpty()) {
+            bothCB.setVisible(true);
+        }
+        if (!figures.getSelectionModel().isEmpty() && !cards.getSelectionModel().isEmpty()) {
+            okaybtn.setOnAction(this::getPlayers);
+            Stage steidz = (Stage) okaybtn.getScene().getWindow();
+            steidz.close();
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+            stage.setTitle("Monopoly");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 }

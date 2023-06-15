@@ -27,6 +27,8 @@ public class RentController extends HelloController implements Initializable {
     @FXML
     Label penguin1;
     @FXML
+    Label bothCB;
+    @FXML
     private Button okaybtn;
     @FXML
     ChoiceBox<String> rentMoney;
@@ -36,6 +38,7 @@ public class RentController extends HelloController implements Initializable {
     private final String[] players1 = {"Duck", "Dog", "Cat", "Penguin" };
     @FXML
     private final String[] rentMoney1 = {"Small House (-25$)", "Big House (-50$)", "Small Hotel (-100$)" , "Big Hotel (-200$)"};
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -103,14 +106,19 @@ public class RentController extends HelloController implements Initializable {
 
     @FXML
     protected void isClicked() throws IOException {
-        okaybtn.setOnAction(this::getPlayers);
-        Stage stage = (Stage) okaybtn.getScene().getWindow();
-        stage.close();
-        Stage stage1 = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
-        stage1.setTitle("Monopoly");
-        stage1.setScene(scene);
-        stage1.show();
+        if (players.getSelectionModel().isEmpty() || rentMoney.getSelectionModel().isEmpty()) {
+            bothCB.setVisible(true);
+        }
+        if (!players.getSelectionModel().isEmpty() && !rentMoney.getSelectionModel().isEmpty()) {
+            okaybtn.setOnAction(this::getPlayers);
+            Stage stage = (Stage) okaybtn.getScene().getWindow();
+            stage.close();
+            Stage stage1 = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+            stage1.setTitle("Monopoly");
+            stage1.setScene(scene);
+            stage1.show();
+        }
     }
 }

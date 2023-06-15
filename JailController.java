@@ -26,11 +26,14 @@ public class JailController extends HelloController implements Initializable {
     @FXML
     Label penguin1;
     @FXML
+    Label bothCB;
+    @FXML
     Button okaybtn;
     @FXML
     ChoiceBox <String> pcbk;
     @FXML
     private final String[] kremova = {"Duck", "Dog", "Cat", "Penguin"};
+
 
     @Override
     public void initialize(URL pat, ResourceBundle mat) {
@@ -57,16 +60,20 @@ public class JailController extends HelloController implements Initializable {
     }
     @FXML
     protected void onTap() throws IOException {
-        okaybtn.setOnAction(this::breakOut);
-        Stage prison = (Stage) okaybtn.getScene().getWindow();
-        prison.close();
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
-        stage.setTitle("Monopoly");
-        stage.setScene(scene);
-        stage.show();
+        if (pcbk.getSelectionModel().isEmpty()) {
+            bothCB.setVisible(true);
+        }
+        if (!pcbk.getSelectionModel().isEmpty()) {
+            okaybtn.setOnAction(this::breakOut);
+            Stage prison = (Stage) okaybtn.getScene().getWindow();
+            prison.close();
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+            stage.setTitle("Monopoly");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
-
 
 }

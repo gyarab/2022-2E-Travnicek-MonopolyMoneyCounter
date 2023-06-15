@@ -9,7 +9,7 @@
       <Button fx:id="buyNewLandbtn" mnemonicParsing="false" onAction="#nitro" prefHeight="50.0" prefWidth="100.0" text="Buy New Land" />
       <Button fx:id="rentbtn" mnemonicParsing="false" onAction="#rentie" prefHeight="50.0" prefWidth="100.0" text="Rent " />
       <Button fx:id="improvbtn" mnemonicParsing="false" onAction="#taxes" prefHeight="50.0" prefWidth="100.0" text="Taxes" />
-      <Label fx:id="dog1" prefHeight="145.0" prefWidth="155.0" text="          Dog's money:1500$ " />
+      <Label fx:id="dog1" prefHeight="145.0" prefWidth="155.0" text="          Dog's money: 1500$ " />
       <Label fx:id="penguin1" prefHeight="145.0" prefWidth="155.0" text="       Penguin's money: 1500$" />
       <Button fx:id="roundbtn" mnemonicParsing="false" onAction="#round" prefHeight="50.0" prefWidth="100.0" text="Round money" />
       <Button fx:id="chancebtn" mnemonicParsing="false" onAction="#plusMinus" prefHeight="50.0" prefWidth="100.0" text="-/+" />

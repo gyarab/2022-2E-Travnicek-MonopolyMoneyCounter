@@ -17,15 +17,17 @@ import static com.example.monopoly.HelloController.*;
 
 public class NitroController extends HelloController implements Initializable{
     @FXML
-    Label duck1;
+    Label duck1 = new Label();
     @FXML
-    Label dog1;
+    Label dog1 = new Label();
     @FXML
-    Label cat1;
+    Label cat1 = new Label();
     @FXML
-    Label penguin1;
+    Label penguin1 = new Label();
     @FXML
     private Button okaybtn;
+    @FXML
+    Label bothCB;
     @FXML
     ChoiceBox<String> koleno1;
     @FXML
@@ -34,6 +36,7 @@ public class NitroController extends HelloController implements Initializable{
     ChoiceBox<String> koleno2;
     @FXML
     private final String[] value = {"1-10 (-50$)", "11-20 (-100$)", "21-30 (-150$)", "31-40 (-200$)"};
+
 
 
     @Override
@@ -60,6 +63,7 @@ public class NitroController extends HelloController implements Initializable{
             }else if(value.equals("31-40 (-200$)")){
                 duck-=200;
             }
+
         }
         if(players.equals("Dog")) {
             if(value.equals("1-10 (-50$)")){
@@ -93,24 +97,26 @@ public class NitroController extends HelloController implements Initializable{
             }else if(value.equals("31-40 (-200$)")){
                 penguin-=200;
             }
-
-        } else {
-            return;
         }
     }
 
     @FXML
     protected void onClick() throws IOException {
-        okaybtn.setOnAction(this::getPlayers);
-        Stage stage = (Stage) okaybtn.getScene().getWindow();
-        stage.close();
-        Stage stage1 = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 320);
-        stage1.setTitle("Monopoly");
-        stage1.setScene(scene);
-        stage1.show();
-    }
+        if (koleno1.getSelectionModel().isEmpty() || koleno2.getSelectionModel().isEmpty()) {
+            bothCB.setVisible(true);
+        }
+        if (! koleno1.getSelectionModel().isEmpty() && ! koleno2.getSelectionModel().isEmpty()) {
+            okaybtn.setOnAction(this::getPlayers);
+            Stage stage = (Stage) okaybtn.getScene().getWindow();
+            stage.close();
+            Stage stage1 = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 320);
+            stage1.setTitle("Monopoly");
+            stage1.setScene(scene);
+            stage1.show();
+        }
 
+    }
 
 }
